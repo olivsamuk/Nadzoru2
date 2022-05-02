@@ -1,0 +1,44 @@
+{
+    "events": [
+        {
+            "controllable": false,
+            "id": 0,
+            "label": "a",
+            "observable": true
+        },
+        {
+            "controllable": false,
+            "id": 1,
+            "label": "b",
+            "observable": true
+        }
+    ],
+    "states": [
+        {
+            "id": 0,
+            "initial": true,
+            "label": 0,
+            "marked": true
+        },
+        {
+            "id": 1,
+            "initial": false,
+            "label": 1,
+            "marked": false
+        }
+    ],
+    "transitions": [
+        {
+            "event": 0,
+            "id": 0,
+            "source": 0,
+            "target": 1
+        },
+        {
+            "event": 1,
+            "id": 1,
+            "source": 1,
+            "target": 0
+        }
+    ]
+}
