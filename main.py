@@ -72,6 +72,6 @@ def cli():
 
 if __name__ == '__main__':
 
-    # cli()
-    application = Application()
-    application.run(sys.argv)
+    cli()
+    # application = Application()
+    # application.run(sys.argv)

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model version="2.1" type="FSA" id="VC (1)">
+<data>
+	<state id="0">
+		<properties>
+			<initial />
+			<marked />
+		</properties>
+		<name>0</name>
+	</state>
+	<state id="1">
+		<properties/>
+		<name>1</name>
+	</state>
+	<event id="0">
+		<properties>
+			<controllable />
+			<observable />
+		</properties>
+		<name>VC_open</name>
+	</event>
+	<event id="1">
+		<properties>
+			<controllable />
+			<observable />
+		</properties>
+		<name>VC_close</name>
+	</event>
+	<event id="2">
+		<properties>
+			<observable />
+		</properties>
+		<name>Inf_Sup</name>
+	</event>
+	<transition id="0" source="0" target="1" event="0">
+	</transition>
+	<transition id="1" source="1" target="0" event="1">
+	</transition>
+	<transition id="2" source="1" target="1" event="2">
+	</transition>
+</data>
+<meta tag="layout" version="2.1">
+	<font size="12.0"/>
+	<layout uniformnodes="false"/>
+	<state id="0">
+		<circle r="18.0" x="228.0" y="157.0" />
+		<arrow x="31.176914" y="18.000002" />
+	</state>
+	<state id="1">
+		<circle r="18.0" x="402.0" y="154.0" />
+		<arrow x="1.0" y="0.0" />
+	</state>
+	<transition id="0">
+		<bezier x1="228.0" y1="157.0" x2="402.0" y2="154.0" ctrlx1="277.7294616699219" ctrly1="127.13397216796875" ctrlx2="351.2705383300781" ctrly2="125.86602783203125" />
+		<label x="0.0" y="-12.0" />
+	</transition>
+	<transition id="1">
+		<bezier x1="402.0" y1="154.0" x2="228.0" y2="157.0" ctrlx1="352.2705383300781" ctrly1="183.86602783203125" ctrlx2="278.7294616699219" ctrly2="185.13397216796875" />
+		<label x="5.0" y="14.0" />
+	</transition>
+	<transition id="2">
+		<bezier x1="402.0" y1="154.0" x2="402.0" y2="154.0" ctrlx1="351.08831787109375" ctrly1="103.08831787109375" ctrlx2="452.91168212890625" ctrly2="103.08831787109375" />
+		<label x="2.0" y="-11.0" />
+	</transition>
+</meta>
+</model>

@@ -1,0 +1,224 @@
+{
+    "events": [
+        {
+            "controllable": true,
+            "id": 0,
+            "label": "VA_open",
+            "observable": true
+        },
+        {
+            "controllable": false,
+            "id": 1,
+            "label": "T_9sec",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 2,
+            "label": "VA_close",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 3,
+            "label": "VC_open",
+            "observable": true
+        },
+        {
+            "controllable": false,
+            "id": 4,
+            "label": "Inf_Sup",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 5,
+            "label": "VC_close",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 6,
+            "label": "VD_open",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 7,
+            "label": "P_start",
+            "observable": true
+        },
+        {
+            "controllable": false,
+            "id": 8,
+            "label": "Sup_Inf",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 9,
+            "label": "P_stop",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 10,
+            "label": "VD_close",
+            "observable": true
+        }
+    ],
+    "states": [
+        {
+            "id": 0,
+            "initial": true,
+            "label": 0,
+            "marked": true
+        },
+        {
+            "id": 1,
+            "initial": false,
+            "label": 1,
+            "marked": false
+        },
+        {
+            "id": 2,
+            "initial": false,
+            "label": 2,
+            "marked": false
+        },
+        {
+            "id": 3,
+            "initial": false,
+            "label": 3,
+            "marked": true
+        },
+        {
+            "id": 4,
+            "initial": false,
+            "label": 4,
+            "marked": false
+        },
+        {
+            "id": 5,
+            "initial": false,
+            "label": 5,
+            "marked": false
+        },
+        {
+            "id": 6,
+            "initial": false,
+            "label": 6,
+            "marked": true
+        },
+        {
+            "id": 7,
+            "initial": false,
+            "label": 7,
+            "marked": false
+        },
+        {
+            "id": 8,
+            "initial": false,
+            "label": 8,
+            "marked": false
+        },
+        {
+            "id": 9,
+            "initial": false,
+            "label": 9,
+            "marked": false
+        },
+        {
+            "id": 10,
+            "initial": false,
+            "label": 10,
+            "marked": false
+        }
+    ],
+    "transitions": [
+        {
+            "event": 0,
+            "id": 0,
+            "source": 0,
+            "target": 1
+        },
+        {
+            "event": 1,
+            "id": 1,
+            "source": 1,
+            "target": 2
+        },
+        {
+            "event": 1,
+            "id": 2,
+            "source": 2,
+            "target": 2
+        },
+        {
+            "event": 2,
+            "id": 3,
+            "source": 2,
+            "target": 3
+        },
+        {
+            "event": 3,
+            "id": 4,
+            "source": 3,
+            "target": 4
+        },
+        {
+            "event": 4,
+            "id": 5,
+            "source": 4,
+            "target": 5
+        },
+        {
+            "event": 4,
+            "id": 6,
+            "source": 5,
+            "target": 5
+        },
+        {
+            "event": 5,
+            "id": 7,
+            "source": 5,
+            "target": 6
+        },
+        {
+            "event": 6,
+            "id": 8,
+            "source": 6,
+            "target": 7
+        },
+        {
+            "event": 7,
+            "id": 9,
+            "source": 7,
+            "target": 8
+        },
+        {
+            "event": 8,
+            "id": 10,
+            "source": 8,
+            "target": 9
+        },
+        {
+            "event": 8,
+            "id": 11,
+            "source": 9,
+            "target": 9
+        },
+        {
+            "event": 9,
+            "id": 12,
+            "source": 9,
+            "target": 10
+        },
+        {
+            "event": 10,
+            "id": 13,
+            "source": 10,
+            "target": 0
+        }
+    ]
+}

@@ -11,4 +11,11 @@ disabled        = [(each_state, each_event.name) for each_state in G.states for 
 # [print(each_transition) for each_transition in controllable]
 # print(disabled)
 
-# print(len(uncontrollable), "transitions with uncontrollable events", '\n', len(controllable), "transitions with controllable events")
+for each_event in G.event_name_map().values():
+    if each_event.controllable:
+        print(each_event.name)
+    for each_disabled_event in disabled:
+        if each_disabled_event[1] == each_event.name:
+            print(each_disabled_event[0])
+
+            # print(len(uncontrollable), "transitions with uncontrollable events", '\n', len(controllable), "transitions with controllable events")

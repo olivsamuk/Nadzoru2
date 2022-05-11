@@ -1,15 +1,21 @@
 {
     "events": [
         {
-            "controllable": false,
+            "controllable": true,
             "id": 0,
-            "label": "a",
+            "label": "P_start",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 1,
+            "label": "P_stop",
             "observable": true
         },
         {
             "controllable": false,
-            "id": 1,
-            "label": "b",
+            "id": 2,
+            "label": "Sup_Inf",
             "observable": true
         }
     ],
@@ -39,6 +45,12 @@
             "id": 1,
             "source": 1,
             "target": 0
+        },
+        {
+            "event": 2,
+            "id": 2,
+            "source": 1,
+            "target": 1
         }
     ]
 }
