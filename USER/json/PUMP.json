@@ -31,6 +31,12 @@
             "initial": false,
             "label": 1,
             "marked": false
+        },
+        {
+            "id": 2,
+            "initial": false,
+            "label": 2,
+            "marked": false
         }
     ],
     "transitions": [
@@ -41,16 +47,16 @@
             "target": 1
         },
         {
-            "event": 1,
+            "event": 2,
             "id": 1,
             "source": 1,
-            "target": 0
+            "target": 2
         },
         {
-            "event": 2,
+            "event": 1,
             "id": 2,
-            "source": 1,
-            "target": 1
+            "source": 2,
+            "target": 0
         }
     ]
 }

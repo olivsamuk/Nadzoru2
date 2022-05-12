@@ -15,7 +15,13 @@
         {
             "controllable": false,
             "id": 2,
-            "label": "Inf_Sup",
+            "label": "Inf_Sup_ge3s",
+            "observable": true
+        },
+        {
+            "controllable": false,
+            "id": 3,
+            "label": "Inf_Sup_lt3s",
             "observable": true
         }
     ],
@@ -31,6 +37,30 @@
             "initial": false,
             "label": 1,
             "marked": false
+        },
+        {
+            "id": 2,
+            "initial": false,
+            "label": 2,
+            "marked": false
+        },
+        {
+            "id": 3,
+            "initial": false,
+            "label": 3,
+            "marked": true
+        },
+        {
+            "id": 4,
+            "initial": false,
+            "label": 4,
+            "marked": false
+        },
+        {
+            "id": 5,
+            "initial": false,
+            "label": 5,
+            "marked": false
         }
     ],
     "transitions": [
@@ -41,16 +71,34 @@
             "target": 1
         },
         {
-            "event": 1,
+            "event": 2,
             "id": 1,
             "source": 1,
+            "target": 2
+        },
+        {
+            "event": 1,
+            "id": 2,
+            "source": 2,
             "target": 0
         },
         {
-            "event": 2,
-            "id": 2,
-            "source": 1,
-            "target": 1
+            "event": 0,
+            "id": 3,
+            "source": 3,
+            "target": 4
+        },
+        {
+            "event": 3,
+            "id": 4,
+            "source": 4,
+            "target": 5
+        },
+        {
+            "event": 1,
+            "id": 5,
+            "source": 5,
+            "target": 3
         }
     ]
 }

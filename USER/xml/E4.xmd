@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model version="2.1" type="FSA" id="VD">
+<model version="2.1" type="FSA" id="E4">
 <data>
 	<state id="0">
 		<properties>
@@ -9,7 +9,9 @@
 		<name>0</name>
 	</state>
 	<state id="1">
-		<properties/>
+		<properties>
+			<marked />
+		</properties>
 		<name>1</name>
 	</state>
 	<event id="0">
@@ -26,9 +28,18 @@
 		</properties>
 		<name>VD_close</name>
 	</event>
+	<event id="2">
+		<properties>
+			<controllable />
+			<observable />
+		</properties>
+		<name>VA_open</name>
+	</event>
 	<transition id="0" source="0" target="1" event="0">
 	</transition>
 	<transition id="1" source="1" target="0" event="1">
+	</transition>
+	<transition id="3" source="0" target="0" event="2">
 	</transition>
 </data>
 <meta tag="layout" version="2.1">
@@ -49,6 +60,10 @@
 	<transition id="1">
 		<bezier x1="533.0" y1="263.0" x2="377.0" y2="262.0" ctrlx1="487.8000183105469" ctrly1="288.7113342285156" ctrlx2="421.86663818359375" ctrly2="288.2886657714844" />
 		<label x="6.0" y="14.0" />
+	</transition>
+	<transition id="3">
+		<bezier x1="377.0" y1="262.0" x2="377.0" y2="262.0" ctrlx1="326.08831787109375" ctrly1="211.08831787109375" ctrlx2="427.91168212890625" ctrly2="211.08831787109375" />
+		<label x="3.0" y="-14.0" />
 	</transition>
 </meta>
 </model>
