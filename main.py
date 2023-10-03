@@ -8,7 +8,30 @@ from gui import Application
 from cli.newDFA import new_dfa
 from cli.json_parser import json_export, json_load
 from cli.xml_parser import ides_export
+from xmlParser.xmlParser import xmlParser
 import os
+
+def findKeys():
+    sup = xmlParser('USER/xml/Sup.xml')
+    event_list = []
+    for each_event in sup.events:
+        if each_event.controllable:
+            event_list.append(each_event)
+
+    for eachState in sup.states:
+        state_events = []
+        print('State ', eachState)
+        for eachTransition in eachState.out_transitions:
+            if eachTransition.event.controllable:
+                state_events.append(eachTransition.event)
+                print('Enabled event: ', eachTransition.event.name)
+
+        diff = set(event_list) - set(state_events)
+        print('Disabled events: ')
+        for each_event in diff:
+            print(each_event.name)
+        print('_______________________')
+
 
 def cli():
     while True:
@@ -72,6 +95,9 @@ def cli():
 
 if __name__ == '__main__':
 
-    cli()
+    findKeys()
+    # -----------------
+    # cli()
+    # ------------------
     # application = Application()
     # application.run(sys.argv)
