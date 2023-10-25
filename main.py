@@ -11,7 +11,7 @@ from cli.xml_parser import ides_export
 from xmlParser.xmlParser import xmlParser
 import os
 
-def findKeys(path_sup, path_plant):
+def findKeys(path_sup, path_plant, damagingEvents):
     sup = xmlParser(path_sup)
     plant = xmlParser(path_plant)
 
@@ -21,8 +21,6 @@ def findKeys(path_sup, path_plant):
             if each_event.controllable:
                 controllableEventsList.append(each_event)
         return controllableEventsList
-
-    print('Controllable Events List: ', getControllableEventsList(sup))
     def isPhysicallyPossible(sup_state, event):
         plant_state_name = sup_state.name.replace('(', '').replace(')', '').split(',')[0]
 
@@ -35,7 +33,6 @@ def findKeys(path_sup, path_plant):
         isFeasible = False
         for each_event in state_events:
             if each_event.name == event.name:
-                # print(each_event.name, ' (Feasible)')
                 isFeasible = True
 
         return isFeasible
@@ -53,14 +50,25 @@ def findKeys(path_sup, path_plant):
             diff = set(getControllableEventsList(model_sup)) - set(state_events)
 
             for each_event in diff:
-                control_commands[eachState]['disablement'].append(each_event.name)
-
-                if not isPhysicallyPossible(eachState, each_event):
+                if isPhysicallyPossible(eachState, each_event):
+                    control_commands[eachState]['disablement'].append(each_event.name)
+                else:
                     control_commands[eachState]['NotPhysicallyPossible'].append(each_event.name)
 
         return control_commands
 
-    print(getControlCommands(sup))
+    TEST
+    def isMonoalphabeticCypherProtectable():
+        control_commands = getControlCommands(sup)
+        for each_state in control_commands:
+            for each_damaging_event in damagingEvents:
+                if each_damaging_event in each_state['disablement']:
+                    each_state
+    def isPolyalphabeticCypherProtectable():
+        pass
+
+    return getControlCommands(sup)
+
 def cli():
     while True:
         print('Choose an option:')
@@ -123,9 +131,10 @@ def cli():
 
 if __name__ == '__main__':
 
-    # findKeys('USER/xml/S.xml', 'USER/xml/G.xml')
+    a = findKeys('USER/xml/S.xml', 'USER/xml/G.xml', ['P_on', 'V_close'])
+    print(a)
     # -----------------
-    cli()
+    # cli()
     # ------------------
     # application = Application()
     # application.run(sys.argv)
