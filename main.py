@@ -4,7 +4,7 @@ import sys
 
 # import pluggins # this causes errors in python 3.8.9+
 from machine.automaton import Automaton
-from gui import Application
+# from gui import Application #Problem with gi (windows)
 from cli.newDFA import new_dfa
 from cli.json_parser import json_export, json_load
 from cli.xml_parser import ides_export
@@ -70,15 +70,16 @@ def isMonoalphabeticCypherProtectable(path_sup, path_plant, damagingEvents):
             for each_plant_state in plant.states:
                 if each_plant_state.name == plant_state_name:
                     plant_state = each_plant_state
-
-            for each_transition in plant_state.out_transitions:
-                if each_transition.to_state.diagnoser_bad:
-                    transitions['to_an_unsafe_state'].append(each_transition)
-                else:
-                    transitions['to_a_safe_state'].append(each_transition)
+                    for each_transition in plant_state.out_transitions:
+                        if each_transition.to_state.diagnoser_bad:
+                            transitions['to_an_unsafe_state'].append(each_transition)
+                        else:
+                            transitions['to_a_safe_state'].append(each_transition)
 
             if len(transitions['to_an_unsafe_state']) <= len(transitions['to_a_safe_state']):
                 controls.append(True)
+            else:
+                controls.append(False)
 
     if False not in controls:
         return True
