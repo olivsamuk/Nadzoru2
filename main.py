@@ -11,10 +11,7 @@ from cli.xml_parser import ides_export
 from xmlParser.xmlParser import xmlParser
 import os
 
-def findKeys(path_sup, path_plant, damagingEvents):
-    sup = xmlParser(path_sup)
-    plant = xmlParser(path_plant)
-
+def getControlCommands(sup, plant):
     def getControllableEventsList(model_sup):
         controllableEventsList = []
         for each_event in model_sup.events:
@@ -36,38 +33,57 @@ def findKeys(path_sup, path_plant, damagingEvents):
                 isFeasible = True
 
         return isFeasible
-    def getControlCommands(model_sup):
-        control_commands = {}
-        for eachState in model_sup.states:
-            state_events = []
-            control_commands[eachState] = {'enablement':[], 'disablement':[], 'NotPhysicallyPossible':[]}
 
-            for eachTransition in eachState.out_transitions:
-                if eachTransition.event.controllable:
-                    state_events.append(eachTransition.event)
-                    control_commands[eachState]['enablement'].append(eachTransition.event.name)
+    # MAIN
+    control_commands = {}
+    for eachState in sup.states:
+        state_events = []
+        control_commands[eachState] = {'enablement':[], 'disablement':[], 'NotPhysicallyPossible':[]}
 
-            diff = set(getControllableEventsList(model_sup)) - set(state_events)
+        for eachTransition in eachState.out_transitions:
+            if eachTransition.event.controllable:
+                state_events.append(eachTransition.event)
+                control_commands[eachState]['enablement'].append(eachTransition.event.name)
 
-            for each_event in diff:
-                if isPhysicallyPossible(eachState, each_event):
-                    control_commands[eachState]['disablement'].append(each_event.name)
+        diff = set(getControllableEventsList(sup)) - set(state_events)
+
+        for each_event in diff:
+            if isPhysicallyPossible(eachState, each_event):
+                control_commands[eachState]['disablement'].append(each_event.name)
+            else:
+                control_commands[eachState]['NotPhysicallyPossible'].append(each_event.name)
+
+    return control_commands
+
+def isMonoalphabeticCypherProtectable(path_sup, path_plant, damagingEvents):
+    sup = xmlParser(path_sup)
+    plant = xmlParser(path_plant)
+
+    control_commands = getControlCommands(sup, plant)
+    controls = []
+    for each_state, each_control_command in control_commands.items():
+        if any(event in each_control_command['disablement'] for event in damagingEvents):
+            transitions = {'to_an_unsafe_state':[], 'to_a_safe_state':[]}
+            plant_state_name = each_state.name.replace('(', '').replace(')', '').split(',')[0]
+            plant_state = None
+            # Get state from plant
+            for each_plant_state in plant.states:
+                if each_plant_state.name == plant_state_name:
+                    plant_state = each_plant_state
+
+            for each_transition in plant_state.out_transitions:
+                if each_transition.to_state.diagnoser_bad:
+                    transitions['to_an_unsafe_state'].append(each_transition)
                 else:
-                    control_commands[eachState]['NotPhysicallyPossible'].append(each_event.name)
+                    transitions['to_a_safe_state'].append(each_transition)
 
-        return control_commands
+            if len(transitions['to_an_unsafe_state']) <= len(transitions['to_a_safe_state']):
+                controls.append(True)
 
-    TEST
-    def isMonoalphabeticCypherProtectable():
-        control_commands = getControlCommands(sup)
-        for each_state in control_commands:
-            for each_damaging_event in damagingEvents:
-                if each_damaging_event in each_state['disablement']:
-                    each_state
-    def isPolyalphabeticCypherProtectable():
-        pass
-
-    return getControlCommands(sup)
+    if False not in controls:
+        return True
+    else:
+        return False
 
 def cli():
     while True:
@@ -130,9 +146,9 @@ def cli():
             break
 
 if __name__ == '__main__':
-
-    a = findKeys('USER/xml/S.xml', 'USER/xml/G.xml', ['P_on', 'V_close'])
-    print(a)
+    print(isMonoalphabeticCypherProtectable('USER/xml/S.xml', 'USER/xml/G.xml', ['P_on', 'V_close']))
+    # a = getControlCommands('USER/xml/S.xml', 'USER/xml/G.xml')
+    # print(a)
     # -----------------
     # cli()
     # ------------------
