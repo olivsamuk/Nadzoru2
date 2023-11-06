@@ -69,12 +69,16 @@ def isMonoalphabeticCypherProtectable(path_sup, path_plant, damagingEvents):
             plant_state = None
             # Get state from plant
             for each_plant_state in plant.states:
+                if each_plant_state.name == '2B' or each_plant_state.name == '5B':
+                    each_plant_state.diagnoser_bad = True
+
                 if each_plant_state.name == plant_state_name:
                     plant_state = each_plant_state
                     for each_transition in plant_state.out_transitions:
-                        if each_transition.to_state.diagnoser_bad:
+                        if each_transition.event.name in each_control_command['disablement'] and each_transition.to_state.diagnoser_bad:
+                            print(each_transition.event.name)
                             transitions['to_an_unsafe_state'].append(each_transition)
-                        else:
+                        elif each_transition.event.name in each_control_command['disablement'] and not each_transition.to_state.diagnoser_bad:
                             transitions['to_a_safe_state'].append(each_transition)
 
             if len(transitions['to_an_unsafe_state']) <= len(transitions['to_a_safe_state']):
@@ -101,7 +105,7 @@ def getKeys(path_sup, path_plant, damagingEvents):
             plant_state = None
             # Get state from plant
             for each_plant_state in plant.states:
-                if each_plant_state.name == '4B' or each_plant_state.name == '7B':
+                if each_plant_state.name == '2B' or each_plant_state.name == '5B':
                     each_plant_state.diagnoser_bad = True
 
                 if each_plant_state.name == plant_state_name:
@@ -113,7 +117,7 @@ def getKeys(path_sup, path_plant, damagingEvents):
                             else:
                                 transitions['to_a_safe_state'].append(each_transition.event.name)
 
-            print(each_control_command, transitions)
+            print(each_state, each_control_command, transitions)
             # todo: generate key
 
 
@@ -178,7 +182,7 @@ def cli():
             break
 
 if __name__ == '__main__':
-    print(getKeys('USER/xml/S.xml', 'USER/xml/G.xml', ['P_on', 'V_close']))
+    print(isMonoalphabeticCypherProtectable('USER/xml/S_1.xml', 'USER/xml/G_1.xml', ['P_on', 'VB_close']))
     # a = getControlCommands('USER/xml/S.xml', 'USER/xml/G.xml')
     # print(a)
     # -----------------
