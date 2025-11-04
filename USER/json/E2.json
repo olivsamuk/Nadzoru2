@@ -1,0 +1,62 @@
+{
+    "events": [
+        {
+            "controllable": true,
+            "id": 0,
+            "label": "VD_open",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 1,
+            "label": "P_stop",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 2,
+            "label": "VD_close",
+            "observable": true
+        }
+    ],
+    "states": [
+        {
+            "id": 0,
+            "initial": true,
+            "label": 0,
+            "marked": true
+        },
+        {
+            "id": 1,
+            "initial": false,
+            "label": 1,
+            "marked": true
+        },
+        {
+            "id": 2,
+            "initial": false,
+            "label": 2,
+            "marked": true
+        }
+    ],
+    "transitions": [
+        {
+            "event": 0,
+            "id": 0,
+            "source": 0,
+            "target": 1
+        },
+        {
+            "event": 1,
+            "id": 1,
+            "source": 1,
+            "target": 2
+        },
+        {
+            "event": 2,
+            "id": 2,
+            "source": 2,
+            "target": 0
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+{
+    "events": [
+        {
+            "controllable": true,
+            "id": 0,
+            "label": "VA_close",
+            "observable": true
+        },
+        {
+            "controllable": true,
+            "id": 1,
+            "label": "VC_open",
+            "observable": true
+        }
+    ],
+    "states": [
+        {
+            "id": 0,
+            "initial": true,
+            "label": 0,
+            "marked": true
+        },
+        {
+            "id": 1,
+            "initial": false,
+            "label": 1,
+            "marked": true
+        }
+    ],
+    "transitions": [
+        {
+            "event": 0,
+            "id": 0,
+            "source": 0,
+            "target": 1
+        },
+        {
+            "event": 1,
+            "id": 1,
+            "source": 1,
+            "target": 0
+        }
+    ]
+}

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model version="2.1" type="FSA" id="Untitled">
+<data>
+	<state id="1">
+ 		<properties>
+ 			<marked />
+ 		</properties>
+ 		<name>1</name>
+ 	</state>
+	<state id="2">
+ 		<properties>
+ 			<marked />
+ 		</properties>
+ 		<name>2</name>
+ 	</state>
+	<state id="3">
+ 		<properties>
+ 			<marked />
+ 		</properties>
+ 		<name>3</name>
+ 	</state>
+	<state id="4">
+ 		<properties>
+ 			<marked />
+ 		</properties>
+ 		<name>4</name>
+ 	</state>
+	<state id="5">
+ 		<properties>
+ 			<initial />
+ 			<marked />
+ 		</properties>
+ 		<name>5</name>
+ 	</state>
+	<state id="6">
+ 		<properties>
+ 			<marked />
+ 		</properties>
+ 		<name>6</name>
+ 	</state>
+	<state id="7">
+ 		<properties>
+ 			<marked />
+ 		</properties>
+ 		<name>7</name>
+ 	</state>
+	<state id="8">
+ 		<properties>
+ 			<marked />
+ 		</properties>
+ 		<name>8</name>
+ 	</state>
+	<event id="1">
+ 		<properties>
+ 			<observable />
+ 		</properties>
+ 		<name>empty</name>
+ 	</event>
+	<event id="2">
+ 		<properties>
+ 			<controllable />
+ 			<observable />
+ 		</properties>
+ 		<name>P_off</name>
+ 	</event>
+	<event id="3">
+ 		<properties>
+ 			<controllable />
+ 			<observable />
+ 		</properties>
+ 		<name>V_open</name>
+ 	</event>
+	<event id="4">
+ 		<properties>
+ 			<observable />
+ 		</properties>
+ 		<name>full</name>
+ 	</event>
+	<event id="5">
+ 		<properties>
+ 			<controllable />
+ 			<observable />
+ 		</properties>
+ 		<name>P_on</name>
+ 	</event>
+	<event id="6">
+ 		<properties>
+ 			<controllable />
+ 			<observable />
+ 		</properties>
+ 		<name>V_close</name>
+ 	</event>
+	<transition id="1" source="0" target="4" event="0">
+ 	</transition>
+	<transition id="2" source="0" target="1" event="4">
+ 	</transition>
+	<transition id="3" source="0" target="6" event="2">
+ 	</transition>
+	<transition id="1" source="1" target="5" event="2">
+ 	</transition>
+	<transition id="2" source="1" target="2" event="0">
+ 	</transition>
+	<transition id="3" source="1" target="0" event="1">
+ 	</transition>
+	<transition id="1" source="2" target="7" event="2">
+ 	</transition>
+	<transition id="2" source="2" target="1" event="3">
+ 	</transition>
+	<transition id="3" source="2" target="4" event="1">
+ 	</transition>
+	<transition id="1" source="3" target="4" event="5">
+ 	</transition>
+	<transition id="2" source="3" target="7" event="4">
+ 	</transition>
+	<transition id="3" source="3" target="6" event="3">
+ 	</transition>
+	<transition id="1" source="4" target="2" event="4">
+ 	</transition>
+	<transition id="2" source="4" target="3" event="2">
+ 	</transition>
+	<transition id="3" source="4" target="0" event="3">
+ 	</transition>
+	<transition id="1" source="5" target="1" event="5">
+ 	</transition>
+	<transition id="2" source="5" target="6" event="1">
+ 	</transition>
+	<transition id="3" source="5" target="7" event="0">
+ 	</transition>
+	<transition id="1" source="6" target="0" event="5">
+ 	</transition>
+	<transition id="2" source="6" target="3" event="0">
+ 	</transition>
+	<transition id="3" source="6" target="5" event="4">
+ 	</transition>
+	<transition id="1" source="7" target="5" event="3">
+ 	</transition>
+	<transition id="2" source="7" target="3" event="1">
+ 	</transition>
+	<transition id="3" source="7" target="2" event="5">
+ 	</transition>
+</data>
+<meta tag="layout" version="2.1">
+	<state id="1">
+ 		<circle r="18.0" x="0" y="0" />
+ 	</state>
+	<state id="2">
+ 		<circle r="18.0" x="0" y="0" />
+ 	</state>
+	<state id="3">
+ 		<circle r="18.0" x="0" y="0" />
+ 	</state>
+	<state id="4">
+ 		<circle r="18.0" x="0" y="0" />
+ 	</state>
+	<state id="5">
+ 		<circle r="18.0" x="0" y="0" />
+ 	</state>
+	<state id="6">
+ 		<circle r="18.0" x="0" y="0" />
+ 	</state>
+	<state id="7">
+ 		<circle r="18.0" x="0" y="0" />
+ 	</state>
+	<state id="8">
+ 		<circle r="18.0" x="0" y="0" />
+ 	</state>
+</meta>
+</model>

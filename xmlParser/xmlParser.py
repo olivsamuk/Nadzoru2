@@ -50,14 +50,14 @@ def xmlParser(path):
         try:
             properties = event.getElementsByTagName("properties")[0]
             if(properties.getElementsByTagName("observable")[0]):
-                observable = True
+                isObservable = True
         except:
             pass
         isControllable = False
         try:
             properties = event.getElementsByTagName("properties")[0]
             if(properties.getElementsByTagName("controllable")[0]):
-                controllable = True
+                isControllable = True
         except:
             pass
         ev = G.event_add(name,observable=isObservable, controllable=isControllable)
@@ -73,4 +73,3 @@ def xmlParser(path):
         G.transition_add(ss, st, ev)
 
     return G
-
