@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model version="0.0" type="FSA" id="Untitled">
+<data>
+	<state id="0" name="6,6" initial ="False" marked="True" x="424" y="726" />
+	<state id="1" name="9,6" initial ="False" marked="False" x="377" y="1006" />
+	<state id="2" name="5,2" initial ="False" marked="True" x="62" y="1036" />
+	<state id="3" name="5,5" initial ="False" marked="True" x="219" y="743" />
+	<state id="4" name="5,L_ins,6" initial ="False" marked="False" x="488" y="1011" />
+	<state id="5" name="1,1" initial ="False" marked="True" x="217" y="603" />
+	<state id="6" name="8,6" initial ="False" marked="False" x="395" y="870" />
+	<state id="7" name="9,1" initial ="False" marked="False" x="18" y="1190" />
+	<state id="8" name="5,1" initial ="False" marked="True" x="79" y="728" />
+	<state id="9" name="8,5" initial ="False" marked="False" x="217" y="868" />
+	<state id="10" name="5,6" initial ="False" marked="True" x="550" y="741" />
+	<state id="11" name="6,2" initial ="False" marked="True" x="741" y="599" />
+	<state id="12" name="0,0" initial ="True" marked="True" x="80" y="604" />
+	<state id="13" name="2,2" initial ="False" marked="True" x="422" y="597" />
+	<state id="14" name="5,L_ins,1" initial ="False" marked="False" x="72" y="859" />
+	<state id="15" name="6,L_ins,6" initial ="False" marked="False" x="580" y="601" />
+	<state id="16" name="8,1" initial ="False" marked="False" x="700" y="1037" />
+	<state id="17" name="9,5" initial ="False" marked="False" x="211" y="1033" />
+	<event id="0" name="close_f" controllable="True" observable="True"/>
+	<event id="1" name="L" controllable="False" observable="True"/>
+	<event id="2" name="H" controllable="False" observable="True"/>
+	<event id="3" name="close_d_a" controllable="True" observable="True"/>
+	<event id="4" name="EH" controllable="False" observable="True"/>
+	<event id="5" name="open_d" controllable="True" observable="True"/>
+	<event id="6" name="H_del" controllable="False" observable="True"/>
+	<event id="7" name="H_ins" controllable="False" observable="True"/>
+	<event id="8" name="L_del" controllable="False" observable="True"/>
+	<event id="9" name="open_f" controllable="True" observable="True"/>
+	<event id="10" name="close_d" controllable="True" observable="True"/>
+	<event id="11" name="L_ins" controllable="False" observable="True"/>
+	<transition source="0" target="13" event="1"/>
+	<transition source="0" target="3" event="2"/>
+	<transition source="0" target="15" event="11"/>
+	<transition source="0" target="6" event="3"/>
+	<transition source="0" target="10" event="6"/>
+	<transition source="2" target="16" event="10"/>
+	<transition source="3" target="0" event="5"/>
+	<transition source="3" target="9" event="3"/>
+	<transition source="4" target="2" event="1"/>
+	<transition source="5" target="12" event="0"/>
+	<transition source="5" target="3" event="2"/>
+	<transition source="5" target="8" event="6"/>
+	<transition source="5" target="13" event="1"/>
+	<transition source="6" target="1" event="4"/>
+	<transition source="8" target="14" event="11"/>
+	<transition source="9" target="17" event="4"/>
+	<transition source="10" target="4" event="11"/>
+	<transition source="10" target="6" event="3"/>
+	<transition source="11" target="16" event="10"/>
+	<transition source="12" target="5" event="9"/>
+	<transition source="13" target="5" event="10"/>
+	<transition source="14" target="2" event="1"/>
+	<transition source="15" target="11" event="1"/>
+	<transition source="16" target="7" event="4"/>
+</data>
+</model>

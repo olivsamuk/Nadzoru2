@@ -14,6 +14,16 @@ from xml.dom.minidom import parse
 import re
 import machine.exceptions as expt
 
+def debug(msg):
+    try:
+        with open(os.path.expanduser("~/Production/Nadzoru2/debug_supc.log"), "a") as f:
+            f.write(msg)
+    except Exception as e:
+        import sys
+        sys.__stdout__.write(f"File write failed: {e}\n")
+        sys.__stdout__.flush()
+
+
 cur_path = os.path.realpath(__file__)
 base_path = os.path.dirname(os.path.dirname(cur_path))
 sys.path.insert(1, base_path)
@@ -1253,6 +1263,7 @@ class Automaton(Base):
     def trim(self, inplace=True):
         return self.coaccessible(inplace).accessible(True)
 
+
     def non_coaccessible_states_join(self):
         pass
 
@@ -1412,52 +1423,197 @@ class Automaton(Base):
         # If there aren t any, Sup = R
         # If there are, remove bad states from R
         # Calculate TRIM and back to step 1
+        import os, sys
+        def samuel(msg):
+            try:
+                with open(os.path.expanduser("~/debug_supc.log"), "a") as f:
+                    f.write(msg)
+            except Exception as e:
+                import sys
+                sys.__stdout__.write(f"File write failed: {e}\n")
+                sys.__stdout__.flush()
+
 
         sup = R.copy()
 
-        flag_bad_state = True
-        set_bad_state = set()
-        visited_states_set = set()
-        univ_map = G.univocal(sup)
-        states_to_be_visited_in_R = list()
-        states_to_be_visited_in_R.append(sup.initial_state)
+        while True:
+            new_sup = sup.copy()
+            flag_bad_state = True
+            set_bad_state = set()
+            visited_states_set = set()
+            univ_map = G.univocal(new_sup)
+            states_to_be_visited_in_R = list()
+            states_to_be_visited_in_R.append(new_sup.initial_state)
+            
+            while flag_bad_state:
+                flag_bad_state = False
+                flag_end = True
+                state_in_R = states_to_be_visited_in_R.pop()
 
-        while flag_bad_state:
-            flag_bad_state = False
-            flag_end = True
-            state_in_R = states_to_be_visited_in_R.pop()
+                while flag_end:
+                    for g_transition in univ_map[state_in_R].out_transitions:
+                        r_event_set = set()
 
-            while flag_end:
-                for g_transition in univ_map[state_in_R].out_transitions:
-                    r_event_set = set()
+                        for r_transition in state_in_R.out_transitions:
+                            r_event_set.add(r_transition.event.name)
 
-                    for r_transition in state_in_R.out_transitions:
-                        r_event_set.add(r_transition.event.name)
-
-                    for r_transition in state_in_R.out_transitions:
+                        # for r_transition in state_in_R.out_transitions:
                         if g_transition.event.name not in r_event_set:
                             if not g_transition.event.controllable:
                                 set_bad_state.add(state_in_R)
                                 flag_bad_state = True
                         else:
-                            next_state = r_transition.to_state
-                            if next_state not in visited_states_set:
-                                visited_states_set.add(state_in_R)
-                                states_to_be_visited_in_R.append(next_state)
-                try:
-                    state_in_R = states_to_be_visited_in_R.pop()
-                except IndexError:
-                    flag_end = False
+                            for r_transition in state_in_R.out_transitions:
+                                if r_transition.event.name == g_transition.event.name:
+                                    next_state = r_transition.to_state
+                                    if next_state not in visited_states_set:
+                                        visited_states_set.add(next_state) # avoid revisiting the same state multiple times
+                                        states_to_be_visited_in_R.append(next_state)
 
-            if flag_bad_state:
-                for state in set_bad_state:
-                    sup.state_remove(state)
-                set_bad_state = set()
+                    try:
+                        state_in_R = states_to_be_visited_in_R.pop()
+                    except IndexError:
+                        flag_end = False
+                
+                if flag_bad_state:
+                    for state in set_bad_state:
+                        new_sup.state_remove(state)
+                    set_bad_state = set()
+                    flag_bad_state = False
+
+            t = new_sup.trim()
+            if t is not None:
+                new_sup = t
+
+            if len(new_sup.states) != 0:
+                pass
+            else:
+                # return it even though it's empty 
+                return new_sup    
+            
+            if len(new_sup.states) == len(sup.states):
+                return new_sup
+            else:
+                sup = new_sup
+
+
+    
+    def find_removed_states(self, op, inplace=True):
+        if op == 'coac':    
+            trimmed_automaton = self.copy().coaccessible(inplace)
+        elif op == 'ac':
+            trimmed_automaton = self.copy().accessible(True)
+        trimmed_state_set = trimmed_automaton.states
+        univ_map = self.univocal(trimmed_automaton)
+
+        removed_states_set = set()
+
+        for i in self.states:
+            found = False
+            for j in trimmed_state_set:
+                if j.name == i.name:
+                    found = True
+            if found == False:
+                removed_states_set.add(i)
+        # debug('Estados removidos: '+str(removed_states_set)+'Fim! \n')
+        return removed_states_set 
+
+    def attacked_events_remove(self, attacked_events_set):
+        H = self.copy()
+        transitions_to_remove = set()
+        for state in H.states:
+            state_label = state.name
+            after_comma = state_label.split(",", 1)[1].strip()
+            if after_comma == 'A':
+                for transition in state.out_transitions:
+                    if transition.event.name in attacked_events_set:
+                        transitions_to_remove.add(transition)
+        for transition in transitions_to_remove:            
+            H.transition_remove(transition)
+        return H
+
+    def RobRecSup(G, R, att, univocal_map=None):
+        # Look for Bad States in R.
+        # If there aren t any, Sup = R
+        # If there are, remove bad states from R
+        # Calculate TRIM and back to step 1
+
+        sup = R.copy()
+
+        while True:
+            new_sup = sup.copy()
+            flag_bad_state = True
+            set_bad_state = set()
+            visited_states_set = set()
+            univ_map = G.univocal(new_sup)
+            states_to_be_visited_in_R = list()
+            states_to_be_visited_in_R.append(new_sup.initial_state)
+            Rb = new_sup.copy().attacked_events_remove(att)
+
+            # ---------SAFETY-------------            
+            while flag_bad_state:
                 flag_bad_state = False
+                flag_end = True
+                state_in_R = states_to_be_visited_in_R.pop()
 
-        sup.trim()
+                while flag_end:
+                    for g_transition in univ_map[state_in_R].out_transitions:
+                        r_event_set = set()
 
-        return sup
+                        for r_transition in state_in_R.out_transitions:
+                            r_event_set.add(r_transition.event.name)
+
+                        # for r_transition in state_in_R.out_transitions:
+                        if g_transition.event.name not in r_event_set:
+                            if not g_transition.event.controllable:
+                                set_bad_state.add(state_in_R)
+                                flag_bad_state = True
+                        else:
+                            for r_transition in state_in_R.out_transitions:
+                                if r_transition.event.name == g_transition.event.name:
+                                    next_state = r_transition.to_state
+                                    if next_state not in visited_states_set:
+                                        visited_states_set.add(next_state) # avoid revisiting the same state multiple times
+                                        states_to_be_visited_in_R.append(next_state)
+
+                    try:
+                        state_in_R = states_to_be_visited_in_R.pop()
+                    except IndexError:
+                        flag_end = False
+
+                univ_map_Rb = Rb.univocal(new_sup)
+                if flag_bad_state:
+                    for state in set_bad_state:
+                        new_sup.state_remove(state)
+                        Rb.state_remove(univ_map_Rb[state]) # Remove bad state from Rb as well
+                    set_bad_state = set()
+                    flag_bad_state = False                                
+
+            # ---------BLOCKING-------------
+            removed_states_set = Rb.find_removed_states('coac')
+            univ_map_R = new_sup.univocal(Rb)
+
+            t = Rb.coaccessible()
+            if t is not None:
+                Rb = t
+            
+            states_to_remove_in_R = set()
+            for state in removed_states_set:
+                states_to_remove_in_R.add(univ_map_R[state])
+            for state in states_to_remove_in_R:
+                new_sup.state_remove(state)
+
+
+            if len(new_sup.states) != 0:
+                pass
+            else:
+                # return it even though it's empty 
+                return new_sup.trim()    
+            
+            if len(new_sup.states) == len(sup.states):
+                return new_sup.trim()    
+            else:
+                sup = new_sup.trim()    
 
     def choice_problem_check(self):
         pass

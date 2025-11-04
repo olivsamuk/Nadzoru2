@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model version="0.0" type="FSA" id="Untitled">
+<data>
+	<state id="0" name="R2" initial ="False" marked="False" x="-346" y="278" />
+	<state id="1" name="D" initial ="False" marked="False" x="-203" y="-27" />
+	<state id="2" name="B" initial ="False" marked="False" x="205" y="278" />
+	<state id="3" name="D" initial ="False" marked="False" x="165" y="654" />
+	<state id="4" name="RI" initial ="False" marked="False" x="-38" y="280" />
+	<state id="5" name="BM" initial ="False" marked="False" x="184" y="545" />
+	<state id="6" name="A" initial ="True" marked="True" x="75" y="337" />
+	<state id="7" name="D" initial ="False" marked="False" x="-17" y="8" />
+	<state id="8" name="RM" initial ="False" marked="False" x="-28" y="166" />
+	<state id="9" name="R" initial ="False" marked="False" x="-34" y="413" />
+	<state id="10" name="BS" initial ="False" marked="False" x="353" y="551" />
+	<state id="11" name="R1" initial ="False" marked="False" x="-205" y="280" />
+	<state id="12" name="B2" initial ="False" marked="False" x="540" y="417" />
+	<state id="13" name="B1" initial ="False" marked="False" x="345" y="408" />
+	<state id="14" name="BI" initial ="False" marked="False" x="184" y="411" />
+	<state id="15" name="D" initial ="False" marked="False" x="349" y="668" />
+	<state id="16" name="RC" initial ="False" marked="False" x="-198" y="136" />
+	<event id="0" name="m" controllable="True" observable="True"/>
+	<event id="1" name="b" controllable="False" observable="True"/>
+	<event id="2" name="in-1" controllable="True" observable="True"/>
+	<event id="3" name="p2" controllable="True" observable="True"/>
+	<event id="4" name="p2-a" controllable="False" observable="True"/>
+	<event id="5" name="r" controllable="False" observable="True"/>
+	<event id="6" name="p1-a" controllable="False" observable="True"/>
+	<event id="7" name="in-2" controllable="True" observable="True"/>
+	<event id="8" name="p1" controllable="True" observable="True"/>
+	<event id="9" name="in-i" controllable="True" observable="True"/>
+	<event id="10" name="s" controllable="True" observable="True"/>
+	<transition source="0" target="0" event="8"/>
+	<transition source="0" target="16" event="3"/>
+	<transition source="0" target="0" event="6"/>
+	<transition source="2" target="2" event="8"/>
+	<transition source="2" target="14" event="9"/>
+	<transition source="2" target="2" event="6"/>
+	<transition source="2" target="2" event="3"/>
+	<transition source="2" target="2" event="4"/>
+	<transition source="4" target="4" event="6"/>
+	<transition source="4" target="6" event="0"/>
+	<transition source="4" target="11" event="2"/>
+	<transition source="4" target="4" event="4"/>
+	<transition source="4" target="4" event="3"/>
+	<transition source="4" target="4" event="8"/>
+	<transition source="5" target="5" event="3"/>
+	<transition source="5" target="5" event="4"/>
+	<transition source="5" target="3" event="10"/>
+	<transition source="5" target="6" event="0"/>
+	<transition source="6" target="9" event="5"/>
+	<transition source="6" target="6" event="8"/>
+	<transition source="6" target="6" event="4"/>
+	<transition source="6" target="6" event="3"/>
+	<transition source="6" target="2" event="1"/>
+	<transition source="6" target="6" event="6"/>
+	<transition source="8" target="8" event="4"/>
+	<transition source="8" target="7" event="0"/>
+	<transition source="8" target="8" event="3"/>
+	<transition source="8" target="6" event="10"/>
+	<transition source="9" target="9" event="6"/>
+	<transition source="9" target="9" event="3"/>
+	<transition source="9" target="9" event="8"/>
+	<transition source="9" target="9" event="4"/>
+	<transition source="9" target="4" event="9"/>
+	<transition source="10" target="6" event="10"/>
+	<transition source="10" target="10" event="8"/>
+	<transition source="10" target="15" event="0"/>
+	<transition source="10" target="10" event="6"/>
+	<transition source="11" target="8" event="8"/>
+	<transition source="11" target="11" event="4"/>
+	<transition source="11" target="0" event="7"/>
+	<transition source="11" target="11" event="3"/>
+	<transition source="12" target="12" event="8"/>
+	<transition source="12" target="10" event="3"/>
+	<transition source="12" target="12" event="6"/>
+	<transition source="13" target="13" event="4"/>
+	<transition source="13" target="12" event="7"/>
+	<transition source="13" target="5" event="8"/>
+	<transition source="13" target="13" event="3"/>
+	<transition source="14" target="6" event="0"/>
+	<transition source="14" target="14" event="4"/>
+	<transition source="14" target="14" event="3"/>
+	<transition source="14" target="14" event="6"/>
+	<transition source="14" target="13" event="2"/>
+	<transition source="14" target="14" event="8"/>
+	<transition source="16" target="6" event="0"/>
+	<transition source="16" target="1" event="10"/>
+	<transition source="16" target="16" event="6"/>
+	<transition source="16" target="16" event="8"/>
+</data>
+</model>

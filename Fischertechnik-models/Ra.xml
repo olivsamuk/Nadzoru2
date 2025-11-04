@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model version="0.0" type="FSA" id="Untitled">
+<data>
+	<state id="0" name="BI,ID,BI,ID" initial ="False" marked="True" x="735" y="791" />
+	<state id="1" name="B2,ID,B2,ID" initial ="False" marked="False" x="892" y="309" />
+	<state id="2" name="B,ID,B,ID" initial ="False" marked="True" x="576" y="636" />
+	<state id="3" name="RI,ID,RI,ID" initial ="False" marked="True" x="46" y="695" />
+	<state id="4" name="R1,R1,R1,R1" initial ="False" marked="False" x="-135" y="-86" />
+	<state id="5" name="A,ID,A,ID" initial ="False" marked="True" x="384" y="789" />
+	<state id="6" name="BM,ID,BM,ID" initial ="False" marked="False" x="1114" y="450" />
+	<state id="7" name="R,R,R,R" initial ="False" marked="False" x="239" y="70" />
+	<state id="8" name="B,B,B,B" initial ="False" marked="False" x="536" y="-212" />
+	<state id="9" name="A,A,A,A" initial ="True" marked="True" x="390" y="-55" />
+	<state id="10" name="RM,RM,RM,RM" initial ="False" marked="False" x="121" y="-218" />
+	<state id="11" name="BI,BI,BI,BI" initial ="False" marked="False" x="631" y="-57" />
+	<state id="12" name="R,ID,R,ID" initial ="False" marked="True" x="218" y="907" />
+	<state id="13" name="B2,B2,B2,B2" initial ="False" marked="False" x="1082" y="-55" />
+	<state id="14" name="BS,ID,BS,ID" initial ="False" marked="False" x="392" y="371" />
+	<state id="15" name="B1,B1,B1,B1" initial ="False" marked="False" x="875" y="-89" />
+	<state id="16" name="BS,BS,BS,BS" initial ="False" marked="False" x="646" y="109" />
+	<state id="17" name="RI,RI,RI,RI" initial ="False" marked="False" x="76" y="-76" />
+	<event id="0" name="p2" controllable="True" observable="True"/>
+	<event id="1" name="in-1" controllable="True" observable="True"/>
+	<event id="2" name="b" controllable="False" observable="True"/>
+	<event id="3" name="r" controllable="False" observable="True"/>
+	<event id="4" name="s" controllable="True" observable="True"/>
+	<event id="5" name="m" controllable="True" observable="True"/>
+	<event id="6" name="in-2" controllable="True" observable="True"/>
+	<event id="7" name="p1" controllable="True" observable="True"/>
+	<event id="8" name="p1-a" controllable="False" observable="True"/>
+	<event id="9" name="in-i" controllable="True" observable="True"/>
+	<transition source="0" target="0" event="8"/>
+	<transition source="0" target="0" event="0"/>
+	<transition source="0" target="5" event="5"/>
+	<transition source="0" target="0" event="7"/>
+	<transition source="1" target="14" event="0"/>
+	<transition source="1" target="1" event="7"/>
+	<transition source="1" target="1" event="8"/>
+	<transition source="2" target="2" event="0"/>
+	<transition source="2" target="2" event="7"/>
+	<transition source="2" target="0" event="9"/>
+	<transition source="2" target="2" event="8"/>
+	<transition source="3" target="3" event="7"/>
+	<transition source="3" target="3" event="0"/>
+	<transition source="3" target="5" event="5"/>
+	<transition source="3" target="3" event="8"/>
+	<transition source="4" target="10" event="7"/>
+	<transition source="5" target="12" event="3"/>
+	<transition source="5" target="5" event="7"/>
+	<transition source="5" target="2" event="2"/>
+	<transition source="5" target="5" event="0"/>
+	<transition source="5" target="5" event="8"/>
+	<transition source="6" target="6" event="0"/>
+	<transition source="6" target="5" event="5"/>
+	<transition source="7" target="17" event="9"/>
+	<transition source="7" target="12" event="8"/>
+	<transition source="8" target="2" event="8"/>
+	<transition source="8" target="11" event="9"/>
+	<transition source="9" target="8" event="2"/>
+	<transition source="9" target="7" event="3"/>
+	<transition source="9" target="5" event="8"/>
+	<transition source="10" target="9" event="4"/>
+	<transition source="11" target="15" event="1"/>
+	<transition source="11" target="0" event="8"/>
+	<transition source="12" target="12" event="7"/>
+	<transition source="12" target="12" event="8"/>
+	<transition source="12" target="12" event="0"/>
+	<transition source="12" target="3" event="9"/>
+	<transition source="13" target="16" event="0"/>
+	<transition source="13" target="1" event="8"/>
+	<transition source="14" target="14" event="8"/>
+	<transition source="14" target="5" event="4"/>
+	<transition source="14" target="14" event="7"/>
+	<transition source="15" target="13" event="6"/>
+	<transition source="15" target="6" event="8"/>
+	<transition source="16" target="14" event="8"/>
+	<transition source="16" target="9" event="4"/>
+	<transition source="17" target="3" event="8"/>
+	<transition source="17" target="4" event="1"/>
+</data>
+</model>
