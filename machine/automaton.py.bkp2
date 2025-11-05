@@ -1423,7 +1423,17 @@ class Automaton(Base):
         # If there aren t any, Sup = R
         # If there are, remove bad states from R
         # Calculate TRIM and back to step 1
-        
+        import os, sys
+        def samuel(msg):
+            try:
+                with open(os.path.expanduser("~/debug_supc.log"), "a") as f:
+                    f.write(msg)
+            except Exception as e:
+                import sys
+                sys.__stdout__.write(f"File write failed: {e}\n")
+                sys.__stdout__.flush()
+
+
         sup = R.copy()
 
         while True:
